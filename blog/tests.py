@@ -1,14 +1,58 @@
 from datetime import datetime
-
 from django.urls import resolve
 from django.test import TestCase
 from django.test import Client
 from django.http import HttpRequest
-from blog.models import Post
+from blog.models import *
 from .views import *
 
 
+class PostDetailTest(TestCase):
+    def test_post_detail_page_correct(self):
+        Post.objects.create(
+            title='title 1',
+            summary='summary 1',
+            text='text 1',
+            created_date=datetime.now(),
+        )
+        c = Client()
+        response = c.get('/post/1/')
+        html = response.content.decode('utf8')
+        self.assertIn('title 1', html)
+        self.assertIn('text 1', html)
+        self.assertNotIn('summary 1', html)
+        print(html)
+
+
 class HomePageTest(TestCase):
+    def test_home_page_display_post(self):
+        Post.objects.create(
+            title='title 1',
+            summary='summary 1',
+            text='text 1',
+            created_date=datetime.now(),
+        )
+        Post.objects.create(
+            title='title 2',
+            summary='summary 2',
+            text='text 2',
+            created_date=datetime.now(),
+        )
+        # c = Client()
+        # response = c.get('/')
+        request = HttpRequest()
+        response = post_list(request)
+        html = response.content.decode('utf8')
+
+        #self.assertIn('post', html)
+        self.assertIn('title 1', html)
+        self.assertIn('summary 1', html)
+        self.assertNotIn('text 1', html)
+
+        #self.assertIn('post', html)
+        self.assertIn('title 2', html)
+        self.assertIn('summary 2', html)
+        self.assertNotIn('text 2', html)
 
     def test_root_url_resolves_to_home_page_view(self):
         found = resolve('/')

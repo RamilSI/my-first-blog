@@ -9,7 +9,7 @@ class Post(models.Model):
     text = models.TextField(blank=True)
     summary = models.CharField(max_length=200)
     category = models.CharField(max_length=255, blank=True)
-    created_date = models.DateTimeField(default=timezone.now)
+    created_date = models.DateTimeField(blank=True, default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
     is_published = models.BooleanField(default=False)
     #foto = models.ImageField(upload_to='pfotos/%Y/%m/%d/', blank=True)#TODO

@@ -6,6 +6,7 @@ from .forms import PostForm, TestForm
 
 
 def post_list(request):
+    #return HttpResponse(request.GET['rt']) #тренирую request
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     return render(request, 'blog/post_list.html', {'posts': posts})
 
@@ -23,7 +24,7 @@ def post_new(request):
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
-            return redirect ('post_detail', pk = post.pk)
+            return redirect ('post_detail', pk=post.pk)
     form = PostForm()
     return render(request, 'blog/post_edit.html', {'form': form})
 
@@ -31,6 +32,7 @@ def post_new(request):
 def learn_test(request):
     form1 = TestForm()
     return render(request, 'blog/test.html', {'form1': form1})
+
 
 def post_edit(request, pk):
     post =get_object_or_404(Post, pk=pk)
