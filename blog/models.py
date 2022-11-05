@@ -13,9 +13,8 @@ class Post(models.Model):
     created_date = models.DateTimeField(blank=True, default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
     is_published = models.BooleanField(default=False)
-    #foto = models.ImageField(upload_to='pfotos/%Y/%m/%d/', blank=True)#TODO
-    slug = models.SlugField(blank=True, null=True) # todo
-
+    slug = models.SlugField(blank=True, null=True)
+    # foto = models.ImageField(upload_to='pfotos/%Y/%m/%d/', blank=True)
 
     def publish(self):
         self.published_date = timezone.now()
@@ -29,16 +28,17 @@ class Post(models.Model):
 
 
 class Schema(models.Model):
-    schema = models.ForeignKey(Post, on_delete=models.CASCADE)
-    name = models.CharField(max_length=220)
+    schema = models.CharField(max_length=200)
+    name = models.ForeignKey(Post, on_delete=models.CASCADE)
     category_shcem = models.CharField(max_length=200)
     first_layer = models.CharField(max_length=200)
-    dry_residue_first_layer = models.IntegerField(max_length=3)
+    dry_residue_first_layer = models.PositiveSmallIntegerField(max_length=3)
     second_layer = models.CharField(max_length=200)
-    thikness_first_layer = models.IntegerField(max_length=5)
-    dry_residue_second_layer = models.IntegerField(max_length=3)
-    thikness_second_layer = models.IntegerField(max_length=5)
+    thikness_first_layer = models.PositiveSmallIntegerField(max_length=5)
+    dry_residue_second_layer = models.PositiveSmallIntegerField(max_length=3)
+    thikness_second_layer = models.PositiveSmallIntegerField(max_length=3)
     all_thikness = models.IntegerField(max_length=5)
+    slug = models.SlugField(blank=True, null=True)
 
     def __str__(self):
         return self.name
