@@ -15,6 +15,10 @@ def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'blog/post_detail.html', {'post': post})
 
+def post_detail_on_slug(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    return render(request, 'blog/post_detail.html', {'post': post})
+
 
 def post_new(request):
     if request.method == 'POST':
