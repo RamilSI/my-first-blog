@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+
 {% block content %}
 
 <div class = 'post'>
@@ -12,7 +13,10 @@
     {% endif %}
     <div class="post_title"><h1> {{ post.title }} </h1></div>
     <div class="post_content"><p> {{ post.text|linebreaksbr }} </p></div>
-    <div class="post_category"><h4> {{ post.category }} </h4></div>
+<!--    <div class="post_category"><h4> Категория: {{ post.category }} </h4></div>-->
+<!--    <div class="schema"> <p> схема покрытия: {{form1.schema}}</p></div>-->
+
 </div>
 
 {% endblock %}
+
