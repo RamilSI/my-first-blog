@@ -1,6 +1,9 @@
 from django.utils import timezone
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse, HttpResponseNotFound, Http404
+
+# from report.views import pageNotFound
 from .models import Post
 from .forms import PostForm, TestForm
 
@@ -17,9 +20,9 @@ def post_detail(request, pk):
     return render(request, 'blog/post_detail.html', {'post': post})
 
 
-# def post_detail_on_slug(request, slug):
-#     post = get_object_or_404(Post, slug=slug)
-#     return render(request, 'blog/post_detail.html', {'post': post})
+def post_detail_on_slug(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    return render(request, 'blog/post_detail.html', {'post': post})
 
 
 def post_new(request):
@@ -42,7 +45,7 @@ def learn_test(request):
 
 
 def post_edit(request, pk):
-    post =get_object_or_404(Post, pk=pk)
+    post = get_object_or_404(Post, pk=pk)
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
@@ -53,4 +56,10 @@ def post_edit(request, pk):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
-    return render(request, 'blog/post_edit.html', {'form':form})
+    return render(request, 'blog/post_edit.html', {'form': form})
+
+
+def pageNotFound(request, exception):
+    return HttpResponseNotFound('<h1> Страница не найдена </h1>')
+
+handler404 = pageNotFound
