@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 
 # from report.views import pageNotFound
-from .models import Post
+from .models import Post, Schema
 from .forms import PostForm, TestForm
 
 

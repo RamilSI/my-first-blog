@@ -1,5 +1,5 @@
 body {
-    background-color: #9AF123;
+    background-color: #аааааа;
     margin-left: 15px;
 }
 
@@ -53,4 +53,8 @@ h1, h2, h3, h4 {
 
 p.schema {
     color: #000000;
+}
+
+li {
+    color: #111111;
 }

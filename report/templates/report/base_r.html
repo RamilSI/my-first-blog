@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<!--    <link rel="stylesheet" href="{% static 'css/report.css' %}">-->
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <title>{{title}}</title>
+</head>
+
+<body>
+    <header> Header </header>
+    <div class="conteiner">
+
+        <img src="/images/лого тест.001.jpeg" alt="">
+        <div class="content">
+            <div class="content__title title">
+                <h1>
+                    <form action="#" method="post" enctype="multipart/form-data"></form>
+                    Отчет инспекционного осмотра состояния лакокрасочного покрытия галереи <span>ООО «КСК»</span> на базе материалов <span>International</span>
+                </h1>
+                <div class="content__geolocation">
+                    <h2>
+                       Береговая Галерея КСК
+                    </h2>
+                    <h2>
+                        г. Новороссийск, Краснодарский Край<br>
+                        <span> 9 ноября 2022 года</span>
+                    </h2>
+                </div>
+            </div>
+            <div class="content__to-do">
+                <ul>
+                {% for m in menu %}
+                    <li> {{m}} </li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

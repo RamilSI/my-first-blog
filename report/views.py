@@ -1,9 +1,14 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect
 
+from .models import Report
+
+menu = ['Вводная часть', 'Норматив', 'Фото и измерения', 'Выводы и рекомендации']
+
 
 def index_report(request):
-    return HttpResponse('<h1>Страница приложения Отчет</h1>')
+    reports = Report.objects.all()
+    return render(request, 'report/base_r.html', {'reports':reports,'title': 'Tonal', 'menu': menu})
 
 
 def report_cat(request, cat_id):
@@ -23,6 +28,3 @@ def pageNotFound(request, exception):
 
 
 handler404 = pageNotFound
-
-
-
